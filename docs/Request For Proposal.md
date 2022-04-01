@@ -27,3 +27,12 @@
    - [ ] 채팅방이 종료되면 상호평가를 진행할 수 있다.
  - [ ] 유저온도
    - [ ] 유저에 대한 평가가 이루어질 때마다 유저의 온도점수를 업데이트한다.
+
+## 🙆비기능 요구사항
+ - **Commit Message Conventions**을 지켜서 커밋한다.
+   > #### AngularJS Git Commit Message Conventions
+   > [원본링크](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)  
+   > [번역링크](https://velog.io/@outstandingboy/Git-커밋-메시지-규약-정리-the-AngularJS-commit-conventions)
+ - **캠퍼스 핵데이 Java 코딩 컨벤션**을 지켜서 코딩한다
+   > #### 캠퍼스 핵데이 Java 코딩 컨벤션
+   > [링크](https://naver.github.io/hackday-conventions-java/)
