@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import com.fireprohibition.CBomb.authentication.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -21,15 +24,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
 		http
 				.authorizeRequests()
-				.antMatchers("/", "/login/**", "/register/**", "/register", "/login").permitAll()
+				.antMatchers("/", "/login/**", "/register/**", "/register", "/login", "/assets/**", "/images/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
-				.loginPage("/")
-				.usernameParameter("loginId")
-				.passwordParameter("password")
+					.loginPage("/login")
+					.loginProcessingUrl("/login")
+					.defaultSuccessUrl("/")
+					.failureUrl("/login?error=true")
+					.usernameParameter("username")
+					.passwordParameter("password")
 				.and()
 				.logout()
 				.permitAll();
@@ -53,14 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	// @Override
-	// public void configure(WebSecurity web) throws Exception {
-	// 	super.configure(web);
 
-	// }
-
-	// @Override
-	// public void configure(AuthenticationManagerBuilder auth) throws Exception {
-	// 	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	// }
+	public AuthenticationSuccessHandler successHandler() {
+		return new LoginSuccessHandler("/");
+	}
 }
