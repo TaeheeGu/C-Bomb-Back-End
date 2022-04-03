@@ -34,10 +34,10 @@
   }
   .loginform h3 {
     align-self: center;
-    margin: 15 10 10 10;
+    margin: 15px 10px 10px 10px;
   }
   .loginform h4 {
-    margin: 15 10 5 10;
+    margin: 15px 10px 5px 10px;
   }
   .loginform form input {
     width: 100%;
@@ -53,7 +53,16 @@
   .loginform form input::placeholder {
     color: #9fa3a6;
   }
-  .loginform form input[type="submit"] {
+  .loginform form input[type="checkbox"]{
+    width: 20px; /*Desired width*/
+    display:inline-block;
+    vertical-align: -20px;
+  }
+  .loginform .login_submit {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    outline: none;
     position: relative;
     margin-bottom: 5px;
     background: white;
@@ -65,12 +74,7 @@
     border-radius: 20px;
     transition: 0.3s;
   }
-  .loginform form input[type="checkbox"]{
-    width: 20px; /*Desired width*/
-    display:inline-block;
-    vertical-align: -20px;
-  }
-  .loginform form input[type="submit"]:hover {
+  .loginform .login_submit:hover {
     background: #f56a6a;
     color: white;
   }
