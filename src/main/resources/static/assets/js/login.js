@@ -32,7 +32,7 @@ function login() {
                 alert("통신 오류");
                 return false;
             } else { //로그인 성공시
-                window.location.href = "../../templates/index.html";
+                window.location.href = "../../../templates/index.html";
             }
         },
         error: function (jqXHR, status, error) {
