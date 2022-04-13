@@ -50,4 +50,15 @@ public class UserController {
 	public String test() {
 		return "test";
 	}
+
+	@GetMapping("/theater")
+	public String theater() {
+		return "/theaterlist";
+	}
+
+	@GetMapping("/chat")
+	public String chat() {
+		return "/chatlist";
+	}
+
 }
