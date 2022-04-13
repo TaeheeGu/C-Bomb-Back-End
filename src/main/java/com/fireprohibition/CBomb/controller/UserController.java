@@ -57,8 +57,18 @@ public class UserController {
 	}
 
 	@GetMapping("/test")
-	public @ResponseBody
-	String test() {
-		return "접근가능";
+	public String test() {
+		return "test";
 	}
+
+	@GetMapping("/theater")
+	public String theater() {
+		return "/theaterlist";
+	}
+
+	@GetMapping("/chat")
+	public String chat() {
+		return "/chatlist";
+	}
+
 }
