@@ -3,9 +3,11 @@ package com.fireprohibition.CBomb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fireprohibition.CBomb.dto.RegisterForm;
@@ -31,19 +33,27 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public String register(@ModelAttribute RegisterForm form,
+	public String register(@ModelAttribute("registerForm") RegisterForm registerForm,
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "/register";
-		} else if(userRepository.findByUsername(form.getUsername()).isPresent()){
-			bindingResult.reject("registerFail", "이미 존재하는 아이디입니다.");
+		} else if(userRepository.findByUsername(registerForm.getUsername()).isPresent()){
+			bindingResult.addError(new FieldError("registerForm", "username", "이미 존재하는 아이디 입니다."));
 			return "/register";
-		} else if (!form.getPassword().equals(form.getPasswordCheck())) {
-			bindingResult.reject("registerFail", "비밀번호가 일치하지 않습니다.");
+		} else if (!registerForm.getPassword().equals(registerForm.getPasswordCheck())) {
+			bindingResult.addError(new FieldError("registerForm", "passwordCheck", "비밀번호가 일치하지 않습니다."));
 			return "/register";
 		}
-		registerService.joinUser(form.getUsername(), form.getPassword());
+		registerService.joinUser(registerForm.getUsername(), registerForm.getPassword());
 		return "redirect:/";
+	}
+
+	@PostMapping("/register/find-same-name")
+	@ResponseBody
+	public String findSameName(@RequestParam("usernmae") String username) {
+		if(userRepository.findByUsername(username).isPresent())
+			return "False";
+		return "True";
 	}
 
 	@GetMapping("/test")

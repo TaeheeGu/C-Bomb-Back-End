@@ -1,4 +1,10 @@
-<link rel="stylesheet" href="assets/css/loginForm.css">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="'assets/css/loginForm.css'" href="../static/assets/css/loginForm.css">
+    <title>로그인</title>
+</head>
 <div class="loginform">
     <h1>login</h1>
     <form action="/login" method="post">
@@ -11,7 +17,7 @@
             <input type="password" name="password" id="password" placeholder="Password">
         </div>
         <div class="login_etc">
-            <input type="checkbox" name="" id="" >
+            <input type="checkbox">
             <span>아이디 저장</span>
         </div>
         <input type="submit" value="LOGIN">
@@ -27,3 +33,4 @@
         </div>
     </form>
 </div>
+</html>
