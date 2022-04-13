@@ -1,6 +1,7 @@
 package com.fireprohibition.CBomb.domain.theater;
 
 import com.fireprohibition.CBomb.domain.user.Role;
+import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,8 +38,7 @@ public class Theater {
     private String theater_tell;
 
     @Builder
-    public Theater(Long id, String theater_city, String theater_town, String theater_name, String theater_address, String theater_tell) {
-        this.id = id;
+    public Theater(String theater_city, String theater_town, String theater_name, String theater_address, String theater_tell) {
         this.theater_city = theater_city;
         this.theater_town = theater_town;
         this.theater_name = theater_name;

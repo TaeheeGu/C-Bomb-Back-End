@@ -18,19 +18,20 @@ public class TheaterController {
     private final TheaterService theaterService;
 
     //등록
-    @PostMapping("/test")
-    public Long save(@ModelAttribute TheaterSaveForm theaterSaveForm) {
-        return theaterService.save(theaterSaveForm);
+    @PostMapping("/testTheaterRepo")
+    public Long save(@RequestBody TheaterSaveForm SaveForm) {
+        return theaterService.save(SaveForm);
     }
     
     //수정
-    @PutMapping("/test/{id}")
-    public Long update(@PathVariable Long id, @RequestBody TheaterUpdateForm updateForm) {
+    @PutMapping("/testTheaterRepo/{id}")
+    public Long update(@PathVariable Long id,
+                       @RequestBody TheaterUpdateForm updateForm) {
         return theaterService.update(id, updateForm);
     }
     
     //조회
-    @GetMapping("/test/{id}")
+    @GetMapping("/testTheaterRepo/{id}")
     public TheaterResponseForm findById (@PathVariable Long id) {
         return theaterService.findById(id);
     }
