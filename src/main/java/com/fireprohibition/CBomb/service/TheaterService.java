@@ -12,11 +12,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class TheaterService {
-
 	private final TheaterRepository theaterRepository;
 
 	/**
@@ -44,4 +44,8 @@ public class TheaterService {
 
 		return new TheaterResponseForm(entity);
 	}
+  
+  public List<Theater> findAll() {
+      return theaterRepository.findAll();
+  }
 }

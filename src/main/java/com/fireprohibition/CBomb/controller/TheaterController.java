@@ -1,11 +1,15 @@
 package com.fireprohibition.CBomb.controller;
 
+import com.fireprohibition.CBomb.domain.theater.Theater;
 import com.fireprohibition.CBomb.dto.TheaterResponseForm;
 import com.fireprohibition.CBomb.dto.TheaterSaveForm;
 import com.fireprohibition.CBomb.dto.TheaterUpdateForm;
 import com.fireprohibition.CBomb.service.TheaterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,4 +39,21 @@ public class TheaterController {
     public TheaterResponseForm findById (@PathVariable Long id) {
         return theaterService.findById(id);
     }
+
+    //test 모두 조회
+    @RequestMapping("/theater")
+    ModelAndView selectAllTheaterList() {
+        ModelAndView mav = new ModelAndView("theaterList");
+
+        List<Theater> theaters = theaterService.findAll();
+        mav.addObject("theaters", theaters);
+
+        return mav;
+    }
+
+//    @GetMapping("/testTheaterList")
+    public List<Theater> theaters() {
+        return theaterService.findAll();
+    }
+
 }

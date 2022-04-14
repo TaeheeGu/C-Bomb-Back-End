@@ -61,14 +61,19 @@ public class UserController {
 		return "test";
 	}
 
-	@GetMapping("/theater")
-	public String theater() {
-		return "/theaterlist";
+	@GetMapping("/index")
+	public String indexPage() {
+		return "/index";
 	}
+
+//	@GetMapping("/theater")
+//	public String theater() {
+//		return "/theaterlist";
+//	}
 
 	@GetMapping("/chat")
 	public String chat() {
-		return "/chatlist";
+		return "chatList";
 	}
 
 }
