@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -44,5 +45,9 @@ public class TheaterService {
                 new IllegalArgumentException("해당 영화관이 없습니다."));
 
         return new TheaterResponseForm(entity);
+    }
+
+    public List<Theater> findAll() {
+        return theaterRepository.findAll();
     }
 }
