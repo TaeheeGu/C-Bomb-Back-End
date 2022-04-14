@@ -1,7 +1,14 @@
 package com.fireprohibition.CBomb.domain.theater;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fireprohibition.CBomb.domain.BaseEntity;
+import com.fireprohibition.CBomb.domain.movie.ScreeningMovie;
 import com.fireprohibition.CBomb.domain.user.Role;
+import com.fireprohibition.CBomb.domain.valueType.Address;
 import com.sun.istack.NotNull;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,46 +19,41 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Theater {
+public class Theater extends BaseEntity {
 
-    /**
-     * insert 포맷 형태 정의
-     */
+	/**
+	 * insert 포맷 형태 정의
+	 */
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "theater_id")
+	private Long id;
 
-    @Column(nullable = false)
-    private String theater_city;
+	private String name;
 
-    @Column(nullable = false)
-    private String theater_town;
+	@Embedded
+	private Address address;
 
-    @Column(nullable = false)
-    private String theater_name;
+	@Column(name = "contact_number")
+	private String contactNumber;
 
-    @Column(nullable = false)
-    private String theater_address;
+	@OneToMany(mappedBy = "theater")
+	private List<ScreeningMovie> screeningMovies = new ArrayList<>();
 
-    @Column(nullable = false)
-    private String theater_tell;
 
-    @Builder
-    public Theater(String theater_city, String theater_town, String theater_name, String theater_address, String theater_tell) {
-        this.theater_city = theater_city;
-        this.theater_town = theater_town;
-        this.theater_name = theater_name;
-        this.theater_address = theater_address;
-        this.theater_tell = theater_tell;
-    }
+	@Builder
+	public Theater(String name, Address address, String contactNumber) {
+		this.name = name;
+		this.address = address;
+		this.contactNumber = contactNumber;
+	}
 
-    public void update(String theater_city, String theater_town, String theater_name, String theater_address, String theater_tell) {
-        this.theater_city = theater_city;
-        this.theater_town = theater_town;
-        this.theater_name = theater_name;
-        this.theater_address = theater_address;
-        this.theater_tell = theater_tell;
-    }
+
+	public void update(String name, Address address, String contactNumber) {
+		this.name = name;
+		this.address = address;
+		this.contactNumber = contactNumber;
+	}
 }
 
