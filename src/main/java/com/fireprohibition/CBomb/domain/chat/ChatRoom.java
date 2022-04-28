@@ -15,11 +15,21 @@ import javax.persistence.OneToMany;
 import com.fireprohibition.CBomb.domain.BaseEntity;
 import com.fireprohibition.CBomb.domain.movie.ScreeningMovie;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatRoom extends BaseEntity {
+	@Builder
+	public ChatRoom(Integer maxParticipant, ScreeningMovie screeningMovie) {
+		this.maxParticipant = maxParticipant;
+		setScreeningMovie(screeningMovie);
+	}
+
 	@Id
 	@GeneratedValue
 	@Column(name = "chat_room_id")
@@ -34,4 +44,13 @@ public class ChatRoom extends BaseEntity {
 
 	@OneToMany(mappedBy = "chatRoom")
 	private List<ChatParticipant> chatParticipants = new ArrayList<>();
+
+	public void addChatParticipant(ChatParticipant chatParticipant) {
+		chatParticipant.setChatRoom(this);
+	}
+
+	public void setScreeningMovie(ScreeningMovie screeningMovie) {
+		this.screeningMovie = screeningMovie;
+		screeningMovie.getChatRooms().add(this);
+	}
 }
