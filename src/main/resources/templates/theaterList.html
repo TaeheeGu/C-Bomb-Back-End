@@ -43,13 +43,13 @@
 							<!-- Section -->
 								<section>
 									<header class="major">
-										<h2 th:text="${theaters[0].theater_city} + ' ' + ${theaters[0].theater_town} + ' ' + 영화관">영화관 리스트</h2>
+										<h2 th:text="${theaters[0].address.city} + ' ' + ${theaters[0].address.town} + ' ' + 영화관">영화관 리스트</h2>
 									</header>
 									<div class="posts">
 										<article th:each="theater : ${theaters}">
 											<a href="#" class="image"><img src="../images/pic01.jpg" alt="" /></a>
-											<h3 th:text="${theater.theater_name}"></h3>
-											<p>[[${theater.theater_address}]]<br>[[${theater.theater_tell}]]</p>
+											<h3 th:text="${theater.name}"></h3>
+											<p>[[${theater.address.detail}]]<br>[[${theater.contactNumber}]]</p>
 											<ul class="actions">
 												<li><a href="/chat" class="button">More</a></li>
 											</ul>
