@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,9 +16,21 @@ import com.fireprohibition.CBomb.domain.BaseEntity;
 import com.fireprohibition.CBomb.domain.chat.ChatParticipant;
 
 @Getter @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class User extends BaseEntity {
+	@Builder
+	public User(String username, String password, Role role, String name, String email, String phoneNumber,
+			String birth) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.name = name;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.birth = birth;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -50,12 +64,15 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy = "user")
 	private List<ChatParticipant> chatParticipants = new ArrayList<>();
 
-	//JPA로 데이터베이스에 저장할 때 Enum값을 어떤 형태로 저장할지를 결정한다.
-	//기본적으로 int형으로된 숫자가 저장된다.
-	// 숫자로 저장되면 데이터베이스로 확인할 때 그 값이 무슨 코드를 의미하는지 알수가 없다.
-	// 그래서 문자열 형식으로 저장되게 선언함.
-
 	public String getRoleKey() {
 		return this.role.getKey();
+	}
+
+	public void setManner(Manner manner) {
+		manner.setUser(this);
+	}
+
+	public void addChatParticipant(ChatParticipant chatParticipant) {
+		chatParticipant.setUser(this);
 	}
 }

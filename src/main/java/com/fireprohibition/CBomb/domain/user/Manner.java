@@ -10,11 +10,26 @@ import javax.persistence.OneToOne;
 
 import com.fireprohibition.CBomb.domain.BaseEntity;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Manner extends BaseEntity {
+	@Builder
+	public Manner(Integer mannerRate1, Integer mannerRate2, Integer mannerRate3, Integer mannerRate4,
+			Integer mannerTotalRate, User user) {
+		this.mannerRate1 = mannerRate1;
+		this.mannerRate2 = mannerRate2;
+		this.mannerRate3 = mannerRate3;
+		this.mannerRate4 = mannerRate4;
+		this.mannerTotalRate = mannerTotalRate;
+		setUser(user);
+	}
+
 	@Id
 	@GeneratedValue
 	@Column(name = "manner_id")
@@ -41,4 +56,9 @@ public class Manner extends BaseEntity {
 			cascade = CascadeType.ALL,
 			orphanRemoval = true)
 	private User user;
+
+	public void setUser(User user) {
+		this.user = user;
+		user.setManner(this);
+	}
 }

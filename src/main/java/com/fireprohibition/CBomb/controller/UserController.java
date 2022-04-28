@@ -66,11 +66,6 @@ public class UserController {
 		return "/index";
 	}
 
-//	@GetMapping("/theater")
-//	public String theater() {
-//		return "/theaterlist";
-//	}
-
 	@GetMapping("/chat")
 	public String chat() {
 		return "chatList";

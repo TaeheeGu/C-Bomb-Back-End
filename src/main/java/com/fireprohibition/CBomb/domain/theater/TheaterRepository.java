@@ -1,5 +1,6 @@
 package com.fireprohibition.CBomb.domain.theater;
 
+import com.fireprohibition.CBomb.domain.theater.Theater;
 import com.fireprohibition.CBomb.domain.user.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,5 @@ import java.util.Optional;
 
 @Repository
 public interface TheaterRepository extends JpaRepository<Theater, Long> {
-//    Optional<Theater> findById(Long id);
+   Optional<Theater> findByName(String name);
 }

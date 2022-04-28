@@ -9,6 +9,7 @@ import com.fireprohibition.CBomb.domain.user.Role;
 import com.fireprohibition.CBomb.domain.valueType.Address;
 import com.sun.istack.NotNull;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,13 +18,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Theater extends BaseEntity {
-
-	/**
-	 * insert 포맷 형태 정의
-	 */
+	@Builder
+	public Theater(String name, Address address, String contactNumber) {
+		this.name = name;
+		this.address = address;
+		this.contactNumber = contactNumber;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,13 +44,6 @@ public class Theater extends BaseEntity {
 	@OneToMany(mappedBy = "theater")
 	private List<ScreeningMovie> screeningMovies = new ArrayList<>();
 
-
-	@Builder
-	public Theater(String name, Address address, String contactNumber) {
-		this.name = name;
-		this.address = address;
-		this.contactNumber = contactNumber;
-	}
 
 
 	public void update(String name, Address address, String contactNumber) {

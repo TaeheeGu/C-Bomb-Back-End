@@ -15,11 +15,21 @@ import javax.persistence.OneToMany;
 import com.fireprohibition.CBomb.domain.BaseEntity;
 import com.fireprohibition.CBomb.domain.user.User;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatParticipant extends BaseEntity {
+	@Builder
+	public ChatParticipant(User user, ChatRoom chatRoom) {
+		setUser(user);
+		setChatRoom(chatRoom);
+	}
+
 	@Id
 	@GeneratedValue
 	@Column(name = "chat_participant_id")
@@ -37,4 +47,22 @@ public class ChatParticipant extends BaseEntity {
 	private List<Evaluation> evaluationToList = new ArrayList<>();
 	@OneToMany(mappedBy = "evaluationFrom")
 	private List<Evaluation> evaluationFromList = new ArrayList<>();
+
+	public void setUser(User user) {
+		this.user = user;
+		user.getChatParticipants().add(this);
+	}
+
+	public void setChatRoom(ChatRoom chatRoom) {
+		this.chatRoom = chatRoom;
+		chatRoom.getChatParticipants().add(this);
+	}
+
+	public void addEvaluationToList(Evaluation evaluation) {
+		evaluation.setEvaluationTo(this);
+	}
+
+	public void addEvaluationFromList(Evaluation evaluation) {
+		evaluation.setEvaluationFrom(this);
+	}
 }

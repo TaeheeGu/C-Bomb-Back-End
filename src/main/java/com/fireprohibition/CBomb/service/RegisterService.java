@@ -17,10 +17,11 @@ public class RegisterService {
 	private PasswordEncoder passwordEncoder;
 
 	public void joinUser(String username, String password) {
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(passwordEncoder.encode(password));
-		user.setRole(Role.USER);
+		User user = User.builder()
+				.username(username)
+				.password(passwordEncoder.encode(password))
+				.role(Role.USER)
+				.build();
 		userRepository.save(user);
 	}
 
