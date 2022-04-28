@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Repository
-public class ChatRoomRepository {
+public class ChatRoomRepo {
 
     private Map<String, ChatRoomDto> chatRoomDTOMap;
 
