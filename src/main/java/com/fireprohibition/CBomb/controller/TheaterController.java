@@ -33,7 +33,7 @@ public class TheaterController {
 	@GetMapping("/theater/{theaterId}")
 	public String theaterList(Model model, @PathVariable("theaterId") Long theaterId) {
 		model.addAttribute("screeningMovies", screeningMovieService.findByTheaterId(theaterId));
-		model.addAttribute("targetTheater", theaterService.findById(theaterId));
+		model.addAttribute("theater", theaterService.findById(theaterId));
 		return "screeningMovieList";
 	}
 }

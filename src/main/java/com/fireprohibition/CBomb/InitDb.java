@@ -9,12 +9,20 @@ import javax.persistence.EntityManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fireprohibition.CBomb.domain.chat.ChatParticipant;
+import com.fireprohibition.CBomb.domain.chat.ChatRoom;
+import com.fireprohibition.CBomb.domain.chat.ChatRoomRepository;
 import com.fireprohibition.CBomb.domain.movie.Movie;
 import com.fireprohibition.CBomb.domain.movie.MovieRepository;
 import com.fireprohibition.CBomb.domain.movie.ScreeningMovie;
+import com.fireprohibition.CBomb.domain.movie.ScreeningMovieRepository;
 import com.fireprohibition.CBomb.domain.theater.Theater;
 import com.fireprohibition.CBomb.domain.theater.TheaterRepository;
+import com.fireprohibition.CBomb.domain.user.Role;
+import com.fireprohibition.CBomb.domain.user.User;
+import com.fireprohibition.CBomb.domain.user.UserRepository;
 import com.fireprohibition.CBomb.domain.valueType.Address;
+import com.fireprohibition.CBomb.service.RegisterService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +37,9 @@ public class InitDb {
 		initService.setTheaters();
 		initService.setMovies();
 		initService.setScreeningMovies();
+		initService.setUsers();
+		initService.setChatRooms();
+		initService.setAdmin();
 	}
 
 	@Component
@@ -39,6 +50,9 @@ public class InitDb {
 		private final EntityManager em;
 		private final MovieRepository movieRepository;
 		private final TheaterRepository theaterRepository;
+		private final RegisterService registerService;
+		private final UserRepository userRepository;
+		private final ScreeningMovieRepository ScreeningMovieRepository;
 
 		public void setTheaters() {
 			Theater theater1 = Theater.builder()
@@ -92,7 +106,9 @@ public class InitDb {
 					.posterPath("/images/soul.jpg")
 					.build();
 			em.persist(movie4);
-		};
+		}
+
+		;
 
 		public void setScreeningMovies() {
 			ScreeningMovie screeningMovie1 = ScreeningMovie.builder()
@@ -170,7 +186,7 @@ public class InitDb {
 					.theaterNumber(7)
 					.build();
 			em.persist(screeningMovie9);
-			ScreeningMovie screeningMovie10= ScreeningMovie.builder()
+			ScreeningMovie screeningMovie10 = ScreeningMovie.builder()
 					.startTime(LocalDateTime.of(2022, 4, 28, 21, 0))
 					.endTime(LocalDateTime.of(2022, 4, 28, 23, 32))
 					.theaterNumber(7)
@@ -179,7 +195,7 @@ public class InitDb {
 					.build();
 			em.persist(screeningMovie10);
 
-			ScreeningMovie screeningMovie11= ScreeningMovie.builder()
+			ScreeningMovie screeningMovie11 = ScreeningMovie.builder()
 					.startTime(LocalDateTime.of(2022, 4, 28, 18, 40))
 					.endTime(LocalDateTime.of(2022, 4, 28, 20, 38))
 					.theaterNumber(5)
@@ -187,6 +203,41 @@ public class InitDb {
 					.movie(movieRepository.findByName("공기살인").get())
 					.build();
 			em.persist(screeningMovie11);
+		}
+
+		public void setUsers() {
+			registerService.joinUser("userA", "userA");
+			registerService.joinUser("userB", "userB");
+			registerService.joinUser("userC", "userC");
+			registerService.joinUser("userD", "userD");
+			registerService.joinUser("userE", "userE");
+		}
+
+		public void setChatRooms() {
+			ChatRoom chatRoom = ChatRoom.builder()
+					.maxParticipant(4)
+					.screeningMovie(ScreeningMovieRepository.findFirstByOrderByIdDesc())
+					.build();
+			em.persist(chatRoom);
+			ChatParticipant userA = ChatParticipant.builder()
+					.chatRoom(chatRoom)
+					.user(userRepository.findByUsername("UserA").get())
+					.build();
+			em.persist(userA);
+			ChatParticipant userB = ChatParticipant.builder()
+					.chatRoom(chatRoom)
+					.user(userRepository.findByUsername("UserB").get())
+					.build();
+			em.persist(userB);
+			ChatParticipant userC = ChatParticipant.builder()
+					.chatRoom(chatRoom)
+					.user(userRepository.findByUsername("UserB").get())
+					.build();
+			em.persist(userC);
+		}
+
+		public void setAdmin() {
+			registerService.joinUser("admin", "admin", Role.ADMIN);
 		}
 	}
 }

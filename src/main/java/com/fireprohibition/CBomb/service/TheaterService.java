@@ -38,11 +38,10 @@ public class TheaterService {
 		return id;
 	}
 
-	public TheaterResponseForm findById(Long id) {
+	public Theater findById(Long id) {
 		Theater entity = theaterRepository.findById(id).orElseThrow(() ->
 				new IllegalArgumentException("해당 영화관이 없습니다."));
-
-		return new TheaterResponseForm(entity);
+		return entity;
 	}
   
   public List<Theater> findAll() {

@@ -43,11 +43,11 @@
             <!-- Section -->
             <section>
                 <header class="major">
-                    <h2 th:text="${targetTheater.name}">상영영화 리스트</h2>
+                    <h2 th:text="${theater.name}">상영영화 리스트</h2>
                 </header>
                 <div class="posts">
                     <article th:each="screeningMovie : ${screeningMovies}">
-                        <a th:href="@{/theater/${targetTheater.id}/chatRooms}" class="image"><img th:src="${screeningMovie.getMovie().posterPath}" alt=""/></a>
+                        <a th:href="@{'/theater/'+${theater.id}+'/'+${screeningMovie.id}+'/chatRooms'}" class="image"><img th:src="${screeningMovie.getMovie().posterPath}" alt=""/></a>
                         <h3 th:text="${screeningMovie.getMovie().name}"></h3>
                         <p>
                             상영시간 : [[${#temporals.format(screeningMovie.startTime, 'MM-dd HH:mm')}]] ~ [[${#temporals.format(screeningMovie.endTime, 'MM-dd HH:mm')}]]<br>
@@ -55,7 +55,7 @@
 
                         </p>
                         <ul class="actions">
-                            <li><a th:href="@{/theater/${targetTheater.id}/chatRooms}" class="button">개설된 채팅방 보기</a></li>
+                            <li><a th:href="@{'/theater/'+${theater.id}+'/'+${screeningMovie.id}+'/chatRooms'}" class="button">개설된 채팅방 보기</a></li>
                         </ul>
                     </article>
                 </div>
