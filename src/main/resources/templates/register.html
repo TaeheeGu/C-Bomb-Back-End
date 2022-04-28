@@ -2,11 +2,11 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet"href="../static/assets/css/registerForm.css">
+    <link rel="stylesheet" th:href="@{/assets/css/registerForm.css}">
     <title>회원가입</title>
 </head>
 <div class="registerForm">
-    <h1><a href="/index">C - BomB</a></h1>
+    <h1><a th:href="@{/}">C - BomB</a></h1>
     <h1>회원 가입</h1>
     <form action="/register" method="post">
 

@@ -12,6 +12,8 @@ import com.fireprohibition.CBomb.domain.theater.Theater;
 @Repository
 public interface ScreeningMovieRepository extends JpaRepository<ScreeningMovie, Long> {
 
-	@Query(value = "SELECT sm FROM ScreeningMovie sm LEFT JOIN FETCH sm.movie")
+	@Query(value = "SELECT sm FROM ScreeningMovie sm LEFT JOIN FETCH sm.movie m LEFT JOIN FETCH sm.theater t WHERE t = ?1")
 	List<ScreeningMovie> findByTheater(Theater theater);
+
+	ScreeningMovie findFirstByOrderByIdDesc();
 }
