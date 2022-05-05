@@ -39,10 +39,10 @@ public class ChatRoomController {
 			Model model) {
 		model.addAttribute("theater", theaterService.findById(theaterId));
 		model.addAttribute("screeningMovie", screeningMovieService.findById(screeningMovieId));
-		model.addAttribute("chatRooms", chatRoomService.findByScreeningMovie(screeningMovieId));
+        model.addAttribute("chatRooms", chatRoomService.findByScreeningMovie(screeningMovieId));
 		return "chatList";
 	}
-
+  
 	@PostMapping("/theater/{theaterId}/{screeningMovieId}/chatRooms")
 	public String createChatRoom(
 			@PathVariable("theaterId") Long theaterId,
