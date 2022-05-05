@@ -3,6 +3,7 @@ package com.fireprohibition.CBomb.domain.chat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,6 +45,13 @@ public class ChatRoom extends BaseEntity {
 
 	@OneToMany(mappedBy = "chatRoom")
 	private List<ChatParticipant> chatParticipants = new ArrayList<>();
+
+	@OneToMany(mappedBy = "chatRoom", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Message> messages = new ArrayList<>();
+
+	public void addMessage(Message message) {
+		message.setChatRoom(this);
+	}
 
 	public void addChatParticipant(ChatParticipant chatParticipant) {
 		chatParticipant.setChatRoom(this);

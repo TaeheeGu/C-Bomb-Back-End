@@ -8,13 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fireprohibition.CBomb.domain.chat.ChatParticipantRepository;
 import com.fireprohibition.CBomb.domain.chat.ChatRoom;
 import com.fireprohibition.CBomb.domain.chat.ChatRoomRepository;
+import com.fireprohibition.CBomb.domain.movie.ScreeningMovie;
 import com.fireprohibition.CBomb.domain.movie.ScreeningMovieRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class ChatRoomService {
 
 	private final ChatRoomRepository chatRoomRepository;
@@ -23,5 +24,16 @@ public class ChatRoomService {
 
 	public List<ChatRoom> findByScreeningMovie(Long screeningMovieId) {
 		return chatRoomRepository.findByScreeningMovie(screeningMovieRepository.findById(screeningMovieId).get());
+	}
+
+	public ChatRoom findById(Long id) {
+		return chatRoomRepository.findById(id).get();
+	}
+
+	@Transactional
+	public Long createChatRoom(Long screeningMovieId) {
+		ScreeningMovie screeningMovie = screeningMovieRepository.findById(screeningMovieId).get();
+		ChatRoom chatRoom = new ChatRoom(4, screeningMovie);
+		return chatRoomRepository.save(chatRoom).getId();
 	}
 }

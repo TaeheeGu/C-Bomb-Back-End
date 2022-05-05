@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/c_bomb?autoReconnect=true
-    username: root
-    password: xoghks1004
+    username: dlsgur0622
+    password: 98dlsgur
   jpa:
     hibernate:
       ddl-auto: create

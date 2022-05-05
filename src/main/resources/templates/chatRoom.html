@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <div class="col-6">
-        <h1>[[${room.name}]]</h1>
+        <h1>[[${room.id}]]</h1>
     </div>
     <div>
         <div id="msgArea" class="col"></div>
@@ -32,15 +32,18 @@
     <div class="col-6"></div>
 </div>
 </body>
-
+<div class="col-6">
+    <div class='alert alert-secondary' th:each="lastMessage : ${lastMessages}">
+        <b th:text="${lastMessage.getText()}"></b>
+        </div></div>
+</div>
 <script th:inline="javascript">
-
     /*<![CDATA[*/
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        var roomName = [[${room.name}]];
-        var roomId = [[${room.roomId}]];
-        var username = prompt("what's your name?");
+        var roomName = [[${room.id}]];
+        var roomId = [[${room.id}]];
+        var username = [[${userName}]];
 
         console.log(roomName + ", " + roomId + ", " + username);
 
@@ -49,7 +52,7 @@
         var stomp = Stomp.over(sockJs);
 
         //2. connection이 맺어지면 실행
-        stomp.connect({}, function (){
+        stomp.connect({}, function () {
             console.log("STOMP Connection")
 
             //4. subscribe(path, callback)으로 메세지를 받을 수 있음
@@ -60,13 +63,12 @@
                 var message = content.message;
                 var str = '';
 
-                if(writer === username){
+                if (writer === username) {
                     str = "<div class='col-6'>";
                     str += "<div class='alert alert-secondary'>";
                     str += "<b>" + writer + " : " + message + "</b>";
                     str += "</div></div>";
-                }
-                else{
+                } else {
                     str = "<div class='col-6'>";
                     str += "<div class='alert alert-warning'>";
                     str += "<b>" + writer + " : " + message + "</b>";
@@ -79,7 +81,7 @@
             stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
         });
 
-        $("#button-send").on("click", function(e){
+        $("#button-send").on("click", function (e) {
             var msg = document.getElementById("msg");
 
             console.log(username + ":" + msg.value);
