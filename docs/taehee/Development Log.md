@@ -33,4 +33,7 @@ index.html 타임리프 문법 수정
 theaterList.html 타임리프 문법 수정
 chatList.html 타임리프 문법 수정
 
+### 04.19 ~ 04.26
+stomp 채팅 구현
+
 

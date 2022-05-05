@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8"/>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -44,7 +45,7 @@
         var roomName = [[${room.id}]];
         var roomId = [[${room.id}]];
         var username = [[${userName}]];
-
+      
         console.log(roomName + ", " + roomId + ", " + username);
 
         var sockJs = new SockJS("/stomp/chat");

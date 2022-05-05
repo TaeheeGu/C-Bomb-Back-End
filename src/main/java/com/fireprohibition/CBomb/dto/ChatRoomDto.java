@@ -11,7 +11,8 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class ChatRoomDto {
+public class
+ChatRoomDto {
 
     private String roomId;
     private String name;
