@@ -14,7 +14,7 @@ public class ChatMessageDto {
     }
 
     private MessageType type; // 메시지 타입
-    private String roomId;
+    private Long roomId;
     private String writer;
     private String message;
 }
