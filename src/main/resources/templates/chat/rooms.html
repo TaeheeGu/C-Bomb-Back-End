@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 </head>
@@ -32,7 +32,7 @@
             var name = $("input[name='name']").val();
 
             if(name == "")
-                alert("Please write the name.")
+                alert("채팅방 이름을 입력해주세요.")
             else
                 $("form").submit();
         });

@@ -33,14 +33,14 @@ public class ChatRoomController {
 			Model model) {
 		model.addAttribute("theater", theaterService.findById(theaterId));
 		model.addAttribute("screeningMovie", screeningMovieService.findById(screeningMovieId));
-		model.addAttribute("chatRooms", chatRoomService.findByScreeningMovie(screeningMovieId));
+        model.addAttribute("chatRooms", chatRoomService.findByScreeningMovie(screeningMovieId));
 		return "chatList";
 	}
   
   //채팅방 목록 조회
-    @GetMapping(value = "/chat/rooms")
+    @GetMapping("/chat/rooms")
     public ModelAndView rooms(){
-        ModelAndView mv = new ModelAndView("chat/rooms");
+        ModelAndView mv = new ModelAndView("/chat/rooms");
 
         mv.addObject("list", repository.findAllRooms());
 
@@ -48,7 +48,7 @@ public class ChatRoomController {
     }
 
     //채팅방 개설
-    @PostMapping(value = "/chat/room")
+    @PostMapping("/chat/room")
     public String create(@RequestParam String name, RedirectAttributes rttr){
         rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(name));
         return "redirect:/chat/rooms";

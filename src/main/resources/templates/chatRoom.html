@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8"/>
+
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -17,15 +19,11 @@
 <div class="container">
     <div class="col-6">
         <h1>[[${room.name}]]</h1>
-<!--        채팅방 이름 표시 공간-->
     </div>
     <div>
-        <div id="msgArea" class="col">
-<!--            메시지 표시 공간-->
-        </div>
-        <div class="col-6">0
+        <div id="msgArea" class="col"></div>
+        <div class="col-6">
             <div class="input-group mb-3">
-<!--                메시지 입력 공간-->
                 <input type="text" id="msg" class="form-control">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
@@ -43,7 +41,7 @@
 
         var roomName = [[${room.name}]];
         var roomId = [[${room.roomId}]];
-        var username = prompt("what's your name?");
+        var username = prompt("닉네임을 입력하세요");
 
         console.log(roomName + ", " + roomId + ", " + username);
 
@@ -56,7 +54,7 @@
             console.log("STOMP Connection")
 
             //4. subscribe(path, callback)으로 메세지를 받을 수 있음
-            stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
+            stomp.subscribe("/sub/chatRoom/" + roomId, function (chat) {
                 var content = JSON.parse(chat.body);
 
                 var writer = content.writer;
@@ -79,17 +77,16 @@
             });
 
             //3. send(path, header, message)로 메세지를 보낼 수 있음
-            stomp.send('/pub/chat/enter', {}, JSON.stringify({type: 'ENTER', roomId: roomId, writer: username}))
+            stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
         });
 
         $("#button-send").on("click", function(e){
             var msg = document.getElementById("msg");
 
             console.log(username + ":" + msg.value);
-            stomp.send('/pub/chat/message', {}, JSON.stringify({type: 'TALK', roomId: roomId, message: msg.value, writer: username}));
+            stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
             msg.value = '';
         });
-
     });
     /*]]>*/
 </script>
