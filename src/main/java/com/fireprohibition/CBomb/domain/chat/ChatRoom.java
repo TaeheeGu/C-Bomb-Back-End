@@ -43,7 +43,7 @@ public class ChatRoom extends BaseEntity {
 	@JoinColumn(name = "screening_movie_id")
 	private ScreeningMovie screeningMovie;
 
-	@OneToMany(mappedBy = "chatRoom")
+	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.EAGER)
 	private List<ChatParticipant> chatParticipants = new ArrayList<>();
 
 	@OneToMany(mappedBy = "chatRoom", orphanRemoval = true, cascade = CascadeType.ALL)

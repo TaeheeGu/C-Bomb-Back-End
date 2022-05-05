@@ -11,6 +11,6 @@ import com.fireprohibition.CBomb.domain.movie.ScreeningMovie;
 @Repository
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
 
-	@Query(value = "SELECT cr FROM ChatRoom cr LEFT JOIN FETCH cr.chatParticipants cp LEFT JOIN FETCH cr.screeningMovie sm WHERE cr.screeningMovie = sm")
+	@Query(value = "SELECT cr FROM ChatRoom cr LEFT JOIN FETCH cr.screeningMovie sm WHERE cr.screeningMovie = ?1")
 	List<ChatRoom> findByScreeningMovie(ScreeningMovie screeningMovie);
 }
