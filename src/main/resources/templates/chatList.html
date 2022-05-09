@@ -55,14 +55,17 @@
                             참여중인사람 : [[${chatRoom.chatParticipants.size()}]]/[[${chatRoom.maxParticipant}]]
                         </p>
                         <ul class="actions">
-                            <li><a th:href="@{'/theater/'+${theater.id}+'/'+${screeningMovie.id}+'/chatRooms/'+${chatRoom.id}}" class="button">채팅방 입장</a></li>
+                            <li><a id="open" th:href="@{'/theater/'+${theater.id}+'/'+${screeningMovie.id}+'/chatRooms/'+${chatRoom.id}}" class="button"
+                                   onclick="window.open(this.href, '_blank', 'width=350, height=600'); return false;">
+                                채팅방 입장</a>
+                            </li>
                         </ul>
                     </article>
                 </div>
+
                 <div class="posts">
                     <article>
                     <form method="post">
-                        <input type="text" name="name" class="form-control">
                         <button class="btn btn-secondary">개설하기</button>
                     </form>
                     </article>
@@ -72,13 +75,16 @@
             <!-- Section -->
             <section>
                 <header class="major">
-                    <h2>회사 소개</h2>
+                    <h2>소개</h2>
                 </header>
                 <p>연락처</p>
                 <ul class="contact">
-                    <li class="icon solid fa-envelope"><a href="#">이메일</a></li>
-                    <li class="icon solid fa-phone">전화번호</li>
-                    <li class="icon solid fa-home">주소</li>
+                    <li class="icon solid fa-envelope"><a href="#">
+                        구태희 : rnxogml3000@naver.com<br>
+                        조인혁 : alzpqm@naver.com
+                    </a></li>
+                    <li class="icon solid fa-phone">010-0000-0000</li>
+                    <li class="icon solid fa-home">광주광역시 용봉로 77 전남대학교</li>
                 </ul>
             </section>
 
@@ -113,7 +119,7 @@
                             <li><a href="#">동구</a></li>
                             <li><a href="#">서구</a></li>
                             <li><a href="#">남구</a></li>
-                            <li><a href="#">북구</a></li>
+                            <li><a href="/theater?">북구</a></li>
                             <li><a href="#">광산구</a></li>
                         </ul>
                     </li>
