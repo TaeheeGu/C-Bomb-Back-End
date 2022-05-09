@@ -48,7 +48,7 @@ public class ChatRoomController {
 			@PathVariable("theaterId") Long theaterId,
 			@PathVariable("screeningMovieId") Long screeningMovieId) {
 		Long chatRoomId = chatRoomService.createChatRoom(screeningMovieId);
-		return "redirect:/theater/" + theaterId + "/" + screeningMovieId + "/chatRooms/" + chatRoomId;
+		return "redirect:/theater/" + theaterId + "/" + screeningMovieId + "/chatRooms";
 	}
 
 	@GetMapping("/theater/{theaterId}/{screeningMovieId}/chatRooms/{chatRoomId}")
