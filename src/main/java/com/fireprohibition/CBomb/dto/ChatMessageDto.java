@@ -1,17 +1,13 @@
 package com.fireprohibition.CBomb.dto;
 
 
+import com.fireprohibition.CBomb.domain.chat.MessageType;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class ChatMessageDto {
-
-    // 메시지 타입 : 입장, 채팅
-    public enum MessageType {
-        ENTER, TALK, QUICK
-    }
 
     private MessageType type; // 메시지 타입
     private Long roomId;

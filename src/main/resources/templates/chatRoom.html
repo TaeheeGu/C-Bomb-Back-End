@@ -17,7 +17,9 @@
     <div id="chatBox" class="chat">
         <ul>
             <li th:each="lastMessage : ${lastMessages}"
-                th:class="${lastMessage.text}=='null'? 'center':'left'">
+                th:class="${lastMessage.messageType}=='ENTER'? 'center':'left'">
+                <p th:text="${lastMessage.messageType}"></p>
+                <p th:text="${lastMessage.user.username}"></p>
                 <div class="sender">
                     <span>
                         Sender
