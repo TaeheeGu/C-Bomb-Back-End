@@ -1,12 +1,6 @@
 package com.fireprohibition.CBomb.domain.chat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fireprohibition.CBomb.domain.BaseEntity;
 import com.fireprohibition.CBomb.domain.user.User;
@@ -20,7 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Message extends BaseEntity {
 
-	public Message(String text) {
+	public Message(String text, MessageType messageType) {
+		this.messageType = messageType;
 		this.text = text;
 	}
 
@@ -30,11 +25,14 @@ public class Message extends BaseEntity {
 	private Long Id;
 	private String text;
 
+	@Enumerated(EnumType.STRING)
+	private MessageType messageType;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "chat_room_id")
 	private ChatRoom chatRoom;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -46,6 +44,4 @@ public class Message extends BaseEntity {
 		this.chatRoom = chatRoom;
 		chatRoom.getMessages().add(this);
 	}
-
-	;
 }
