@@ -1,7 +1,7 @@
-package com.fireprohibition.CBomb.controller;
+package com.fireprohibition.CBomb.web.controller;
 
 import com.fireprohibition.CBomb.domain.chat.MessageType;
-import com.fireprohibition.CBomb.dto.ChatMessageDto;
+import com.fireprohibition.CBomb.web.dto.ChatMessageDto;
 import com.fireprohibition.CBomb.service.MessageService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class ChatController {
 	@MessageMapping(value = "/chat/enter")
 	public void enter(ChatMessageDto message) {
 		if (MessageType.ENTER.equals(message.getType())) {
-			message.setMessage(message.getWriter() + "님이 채팅방에 참여하였습니다.");
+			message.setMessage(message.getWriter() + "님이 접속하였습니다.");
 		}
 		messageService.save(message, MessageType.ENTER);
 		template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
@@ -34,7 +34,4 @@ public class ChatController {
 		messageService.save(message, MessageType.TALK);
 		template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
 	}
-
-	@MessageMapping(value = "/chat/chatRoom/destory")
-	public void message()
 }

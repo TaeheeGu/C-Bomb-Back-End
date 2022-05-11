@@ -1,4 +1,4 @@
-package com.fireprohibition.CBomb.authentication;
+package com.fireprohibition.CBomb.global.authentication;
 
 import java.util.ArrayList;
 import java.util.Collection;

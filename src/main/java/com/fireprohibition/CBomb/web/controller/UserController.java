@@ -1,5 +1,6 @@
-package com.fireprohibition.CBomb.controller;
+package com.fireprohibition.CBomb.web.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,16 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fireprohibition.CBomb.dto.RegisterForm;
+import com.fireprohibition.CBomb.web.dto.RegisterForm;
 import com.fireprohibition.CBomb.domain.user.UserRepository;
 import com.fireprohibition.CBomb.service.RegisterService;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
-	@Autowired
 	private RegisterService registerService;
-	@Autowired
 	private UserRepository userRepository;
 
 	@GetMapping("/login")
@@ -34,7 +34,7 @@ public class UserController {
 
 	@PostMapping("/register")
 	public String register(@ModelAttribute("registerForm") RegisterForm registerForm,
-			BindingResult bindingResult) {
+						   BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "/register";
 		} else if(userRepository.findByUsername(registerForm.getUsername()).isPresent()){
@@ -72,3 +72,4 @@ public class UserController {
 	}
 
 }
+

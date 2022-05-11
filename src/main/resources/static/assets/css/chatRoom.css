@@ -43,6 +43,12 @@ html, body {
 .chat_wrap .chat ul li.center {
     text-align: center;
 }
+.chat_wrap .chat ul li.right-center {
+    text-align: center;
+}
+.chat_wrap .chat ul li.left-center {
+    text-align: center;
+}
 
 .chat_wrap .chat ul li > div {
     font-size: 13px;

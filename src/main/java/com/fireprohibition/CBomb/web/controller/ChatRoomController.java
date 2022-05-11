@@ -1,16 +1,13 @@
-package com.fireprohibition.CBomb.controller;
+package com.fireprohibition.CBomb.web.controller;
 
-import com.fireprohibition.CBomb.repository.ChatRoomRepo;
-
+import com.fireprohibition.CBomb.domain.chat.MessageType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.fireprohibition.CBomb.domain.theater.Theater;
 import com.fireprohibition.CBomb.service.ChatRoomService;
 import com.fireprohibition.CBomb.service.MessageService;
 import com.fireprohibition.CBomb.service.ScreeningMovieService;
@@ -18,15 +15,11 @@ import com.fireprohibition.CBomb.service.TheaterService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
 public class ChatRoomController {
 
-  private final ChatRoomRepo repository;
 	private final TheaterService theaterService;
 	private final ChatRoomService chatRoomService;
 	private final ScreeningMovieService screeningMovieService;

@@ -1,9 +1,5 @@
-package com.fireprohibition.CBomb.controller;
+package com.fireprohibition.CBomb.web.controller;
 
-import com.fireprohibition.CBomb.domain.theater.Theater;
-import com.fireprohibition.CBomb.dto.TheaterResponseForm;
-import com.fireprohibition.CBomb.dto.TheaterSaveForm;
-import com.fireprohibition.CBomb.dto.TheaterUpdateForm;
 import com.fireprohibition.CBomb.service.ScreeningMovieService;
 import com.fireprohibition.CBomb.service.TheaterService;
 
@@ -13,9 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
