@@ -1,4 +1,4 @@
-package com.fireprohibition.CBomb.dto;
+package com.fireprohibition.CBomb.web.dto;
 
 import com.fireprohibition.CBomb.domain.theater.Theater;
 import com.fireprohibition.CBomb.domain.valueType.Address;

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fireprohibition.CBomb.domain.chat.ChatParticipant;
 import com.fireprohibition.CBomb.domain.chat.ChatRoom;
-import com.fireprohibition.CBomb.domain.chat.ChatRoomRepository;
 import com.fireprohibition.CBomb.domain.movie.Movie;
 import com.fireprohibition.CBomb.domain.movie.MovieRepository;
 import com.fireprohibition.CBomb.domain.movie.ScreeningMovie;
@@ -19,7 +18,6 @@ import com.fireprohibition.CBomb.domain.movie.ScreeningMovieRepository;
 import com.fireprohibition.CBomb.domain.theater.Theater;
 import com.fireprohibition.CBomb.domain.theater.TheaterRepository;
 import com.fireprohibition.CBomb.domain.user.Role;
-import com.fireprohibition.CBomb.domain.user.User;
 import com.fireprohibition.CBomb.domain.user.UserRepository;
 import com.fireprohibition.CBomb.domain.valueType.Address;
 import com.fireprohibition.CBomb.service.RegisterService;

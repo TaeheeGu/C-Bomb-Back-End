@@ -48,13 +48,14 @@ chatRoomController 개설 PostMapping redirect 수정
 
 //공통
 
+//theaterList
+
+영화관 브랜드 이미지 db 삽입 필요
+
 토글메뉴 선택시 -> 선택된 지역/영화관  url 수정 필요
 
-//chatRoom
 
-메시지 저장 시 type 저장 필요(최초 입장 안내, 향후 퇴장 안내 필요)
-
-메시지 작성자 이름 확인 필요
+**중요?**
 
 //chatList
 
@@ -64,9 +65,17 @@ chatRoomController 개설 PostMapping redirect 수정
 
 최대 인원에 따른 채팅방 참가 제한
 
-//theaterList
+### 05.10
+채팅방 나가기 로직(프론트 나기기 선택 -> QUICK 전송 -> 백엔드에서 처리)
 
-영화관 브랜드 이미지 db 삽입 필요
+db 더미데이터 삭제 및 실데이터 처리
+
+평가
+
+EC2 서버
+
+
+
 
 
 

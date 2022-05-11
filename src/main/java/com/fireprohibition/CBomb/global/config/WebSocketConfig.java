@@ -1,4 +1,4 @@
-package com.fireprohibition.CBomb.config;
+package com.fireprohibition.CBomb.global.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

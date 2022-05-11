@@ -20,7 +20,6 @@ public class ChatRoomService {
 
 	private final ChatRoomRepository chatRoomRepository;
 	private final ScreeningMovieRepository screeningMovieRepository;
-	private final ChatParticipantRepository chatParticipantRepository;
 
 	public List<ChatRoom> findByScreeningMovie(Long screeningMovieId) {
 		return chatRoomRepository.findByScreeningMovie(screeningMovieRepository.findById(screeningMovieId).get());

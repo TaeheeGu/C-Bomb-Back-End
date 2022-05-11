@@ -3,15 +3,12 @@ package com.fireprohibition.CBomb.service;
 import java.util.List;
 
 import com.fireprohibition.CBomb.domain.chat.*;
-import org.hibernate.type.TrueFalseType;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fireprohibition.CBomb.domain.user.User;
 import com.fireprohibition.CBomb.domain.user.UserRepository;
-import com.fireprohibition.CBomb.dto.ChatMessageDto;
+import com.fireprohibition.CBomb.web.dto.ChatMessageDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +19,6 @@ public class MessageService {
 
 	private final MessageRepository messageRepository;
 	private final ChatRoomRepository chatRoomRepository;
-	private final UserService userService;
 	private final UserRepository userRepository;
 
 	@Transactional

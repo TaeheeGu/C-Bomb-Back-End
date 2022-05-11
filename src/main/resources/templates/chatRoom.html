@@ -17,12 +17,12 @@
     <div id="chatBox" class="chat">
         <ul>
             <li th:each="lastMessage : ${lastMessages}"
-                th:class="${lastMessage.messageType}=='ENTER'? 'center':'left'">
-                <p th:text="${lastMessage.messageType}"></p>
-                <p th:text="${lastMessage.user.username}"></p>
+                th:class="${lastMessage.user.username == userName
+                and lastMessage.messageType.name() == T(com.fireprohibition.CBomb.domain.chat.MessageType).TALK.name()}? 'right':'left'"
+                th:classappend="${lastMessage.messageType.name() == T(com.fireprohibition.CBomb.domain.chat.MessageType).ENTER.name()}? 'center'">
                 <div class="sender">
-                    <span>
-                        Sender
+                    <span th:if="${lastMessage.messageType.name() == T(com.fireprohibition.CBomb.domain.chat.MessageType).TALK.name()}"
+                          th:text="${lastMessage.user.username}">
                     </span>
                 </div>
                 <div class="message">

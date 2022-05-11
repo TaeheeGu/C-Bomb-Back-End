@@ -1,4 +1,4 @@
-package com.fireprohibition.CBomb.dto;
+package com.fireprohibition.CBomb.web.dto;
 
 
 import com.fireprohibition.CBomb.domain.chat.MessageType;
